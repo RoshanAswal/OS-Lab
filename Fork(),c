@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <unistd.h>
+int main()
+{
+    int id=fork();
+    if(id!=0) // a child process
+    {
+        printf("process id - %d\n",id);
+        fork();
+        printf("Hello World!!\n");
+    }
+    return 0;
+}
