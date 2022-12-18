@@ -41,27 +41,26 @@ int main()
     while(1){
         int ind=-1,mn=mxburst+1,completed=0;
         
-        for(int i=0;i<n;i++){  // checking smallest remaining program
+        for(int i=0;i<n;i++){  // checking program with smallest burst time remaining and arrival time less than t (current time) 
             if(arrival[i]<=t && tempburst[i]<mn && tempburst[i]>0){
                 mn=tempburst[i];
                 ind=i;
             }
-            if(tempburst[i]==0)completed++;
+            if(tempburst[i]==0)completed++; // counting all the process which already completed
         }
         
-        if(completed==n)break;
+        if(completed==n)break; // if all the process completed then we break
         
         if(ind>=0){
-            printf("%d ",ind+1);
-            if(response[ind]==-1)response[ind]=t-arrival[ind];
-            tempburst[ind]=tempburst[ind]-1;
+            if(response[ind]==-1)response[ind]=t-arrival[ind]; // first time when program get cpu
+            tempburst[ind]=tempburst[ind]-1; // decreasing burst time of program
             if(tempburst[ind]==0){
-                completion[ind]=t+1;
-                tat[ind]=completion[ind]-arrival[ind];
-                wait[ind]=tat[ind]-burst[ind];
+                completion[ind]=t+1; // calculating completion time of program
+                tat[ind]=completion[ind]-arrival[ind]; // turn around time of program i.e total time between arrival of program in queue to completion
+                wait[ind]=tat[ind]-burst[ind]; // waiting time of program after getting first time cpu
             }
         }
-        t++;
+        t++; // increasing timer
     }
     printf("\n");
     for(int i=0;i<n;i++){
