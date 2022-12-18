@@ -41,14 +41,14 @@ int main()
     }
     int t=0,i=0;
     while(i<n){
-        if(t<arrival[i])t=arrival[i];
-        t+=burst[i];
+        if(t<arrival[i])t=arrival[i]; // if there is some gap between last ending process and new process arrival so we update with new arrival time
+        t+=burst[i]; // adding burst time because the program will end in one go
         
-        completion[i]=t;
-        tat[i]=completion[i]-arrival[i];
-        wait[i]=tat[i]-burst[i];
+        completion[i]=t; // calculating completion time for process
+        tat[i]=completion[i]-arrival[i]; // turn around time - time between process arrived in queue and completed 
+        wait[i]=tat[i]-burst[i]; // waiting time - total time process spent in waiting after getting first time cpu and before completion
         
-        if(i==0 || (i>0 && completion[i-1]<=arrival[i]))
+        if(i==0 || (i>0 && completion[i-1]<=arrival[i])) // response time -  first time when process gets cpu
             response[i]=0;
         else
             response[i]=completion[i-1]-arrival[i];
