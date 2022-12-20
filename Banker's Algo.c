@@ -7,8 +7,10 @@ int main(){
     scanf("%d",&n);
     printf("Enter the number of resources\n");
     scanf("%d",&res);
-    int allocated[n][res];
-    int rem[res];
+    
+    int allocated[n][res]; //total instances of each resource allocated to each program
+    int rem[res]; // total number of instances of each resources we can use
+    
     memset(rem,0,sizeof(rem));
     
     printf("Enter available entities of resources\n");
@@ -18,10 +20,11 @@ int main(){
     for(int i=0;i<n;i++){
         for(int j=0;j<res;j++){
             scanf("%d",&allocated[i][j]);
-            rem[j]-=allocated[i][j];
+            rem[j]-=allocated[i][j]; // calculating total instances of each resources remaining after each program get it's allocated resource share
         }
     }
-    int needed[n][res];
+    
+    int needed[n][res]; // maximum instances required of each resource for a program to complete
     printf("Enter the needed resources for programs\n");
     for(int i=0;i<n;i++){
         for(int j=0;j<res;j++){
@@ -29,13 +32,15 @@ int main(){
             needed[i][j]-=allocated[i][j];
         }
     }
-    int done[n];
+    
+    int done[n]; // to check if a program is executed or not
     memset(done,0,sizeof(done));
+
     while(1){
         int flag=0;
         for(int i=0;i<n;i++){
             int cnt=0;
-            if(done[i])continue;
+            if(done[i])continue; // continue if a program is already executed
             flag=1;
             for(int j=0;j<res;j++){
                 if(rem[j]>=needed[i][j]){
