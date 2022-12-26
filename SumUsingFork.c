@@ -10,14 +10,14 @@ int main()
         for(int i=0;i<5;i++){
             if(arr[i]&1)sumOdd+=arr[i];
         }
-        printf("Parent process\n");
+        printf("child process\n");
         printf("Odd sum - %d\n",sumOdd);
     }else if(id>0){
         for(int i=0;i<5;i++){
             if(!(arr[i]&1))sumEven+=arr[i];
         }
-        printf("Child process\n");
-        printf("Odd sum - %d\n",sumEven);
+        printf("Parent process\n");
+        printf("Even sum - %d\n",sumEven);
     }
     return 0;
 }
