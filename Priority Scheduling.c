@@ -32,6 +32,7 @@ int main()
         if(ind>i){
             swap(arrival,i,ind);
             swap(burst,i,ind);
+            swap(priority,i,ind);
         }
     }
     
