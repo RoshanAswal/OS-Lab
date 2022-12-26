@@ -46,5 +46,5 @@ int main(){
     for(int i=start-1;i>=0;i--){ // going backward only later
         printf("%d ",disk[i]);
     }
-    printf("\nTotal tracks movement - %d\n",(totaltracks-head)+(totaltracks-disk[0]));
+    printf("\nTotal tracks movement - %d\n",(totaltracks-head)+(totaltracks-disk[0])); // here we are incuding end of disk also while going forward that makes it diff than ook
 }
