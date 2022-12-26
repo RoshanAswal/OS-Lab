@@ -3,9 +3,9 @@
 int main()
 {
     int id=fork();
-    if(id!=0) // a child process
+    if(id==0) // a child process
     {
-        printf("process id - %d\n",id);
+        printf("child process id - %d\n",getpid());
         fork();
         printf("Hello World!!\n");
     }
